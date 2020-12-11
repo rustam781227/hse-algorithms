@@ -85,6 +85,7 @@ BigInteger& BigInteger::operator= (const BigInteger& other) {
 BigInteger BigInteger::operator+ () const {
     return *this;
 }
+
 BigInteger BigInteger::operator- () const {
     if (*this == BigInteger(0)) {
         return *this;
@@ -111,6 +112,7 @@ bool operator< (const BigInteger& left, const BigInteger& right) {
     }
     return false;
 }
+
 bool operator== (const BigInteger& left, const BigInteger& right) {
     if (left.is_negative != right.is_negative) {
         return false;
@@ -125,15 +127,19 @@ bool operator== (const BigInteger& left, const BigInteger& right) {
     }
     return true;
 }
+
 bool operator!= (const BigInteger& left, const BigInteger& right) {
     return !(left == right);
 }
+
 bool operator<= (const BigInteger& left, const BigInteger& right) {
     return (left < right) || (left == right);
 }
+
 bool operator>= (const BigInteger& left, const BigInteger& right) {
     return !(left < right);
 }
+
 bool operator> (const BigInteger& left, const BigInteger& right) {
     return (left >= right) && (left != right);
 }
@@ -141,6 +147,7 @@ bool operator> (const BigInteger& left, const BigInteger& right) {
 int& BigInteger::operator[] (size_t index) {
     return buffer[index];
 }
+
 const int& BigInteger::operator[] (size_t index) const {
     return buffer[index];
 }
@@ -154,6 +161,7 @@ BigInteger operator+ (const BigInteger& left, const BigInteger& right) {
     result += right;
     return result;
 }
+
 BigInteger operator- (const BigInteger& left, const BigInteger& right) {
     BigInteger result(left);
     result -= right;
@@ -161,10 +169,6 @@ BigInteger operator- (const BigInteger& left, const BigInteger& right) {
 }
 
 BigInteger& BigInteger::operator+= (const BigInteger& other) {
-    if (this == &other) {
-        *this *= BigInteger(2);
-        return *this;
-    }
     // при вызове + и - вызываются += и -= соответственно, при этом зацикливания не возникает, тк все сводится к случаю, когда оба числа положительны
     if (is_negative) {
         if (other.is_negative) {
@@ -175,10 +179,6 @@ BigInteger& BigInteger::operator+= (const BigInteger& other) {
             *this = other - (-*this);
             return *this;
         }
-    }
-    else if (other.is_negative) {
-        *this = *this - (-other);
-        return *this;
     }
     size_t carry = 0; // флаг переноса из предыдущего разряда
     for (size_t i = 0; i < (buffer.size() < other.buffer.size() ? other.buffer.size() : buffer.size()) || carry != 0; ++i) {
@@ -192,11 +192,8 @@ BigInteger& BigInteger::operator+= (const BigInteger& other) {
     remove_first_zeros();
     return *this;
 }
+
 BigInteger& BigInteger::operator-= (const BigInteger& other) {
-    if (this == &other) {
-        *this = BigInteger(0);
-        return *this;
-    }
     // при вызове + и - вызываются += и -= соответственно, при этом зацикливания не возникает, тк все сводится к случаю, когда оба числа положительны
     if (other.is_negative) {
         *this += (-other);
@@ -228,16 +225,19 @@ const BigInteger BigInteger::operator++ (int) {
     remove_first_zeros();
     return tmp;
 }
+
 BigInteger& BigInteger::operator++ () {
     *this += 1;
     return *this;
 }
+
 const BigInteger BigInteger::operator-- (int) {
     BigInteger tmp = *this;
     --* this;
     remove_first_zeros();
     return tmp;
 }
+
 BigInteger& BigInteger::operator-- () {
     *this -= BigInteger(1);
     return *this;
@@ -407,5 +407,3 @@ BigInteger operator% (const BigInteger& left, const BigInteger& right) {
 BigInteger::operator bool() const {
     return (buffer.back() != 0);
 }
-
-
