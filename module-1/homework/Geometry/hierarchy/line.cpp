@@ -1,4 +1,5 @@
 #include "line.h"
+
 bool Line::_isEqual(double a, double b) const
 {
     return a - b <= 1e-9 && b - a <= 1e-9;

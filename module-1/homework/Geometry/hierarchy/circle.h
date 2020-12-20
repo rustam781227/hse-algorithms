@@ -1,4 +1,5 @@
 #pragma once
+
 #include "ellipse.h"
 
 class Circle : public Ellipse

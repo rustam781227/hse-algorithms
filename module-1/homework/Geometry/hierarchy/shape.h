@@ -1,8 +1,8 @@
 #pragma once
+
 #include "point.h"
 #include "line.h"
 #include <iostream>
-#define M_PI 3.1415926
 #include <cmath>
 
 class Shape

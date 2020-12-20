@@ -1,4 +1,5 @@
 #pragma once
+
 #include "shape.h"
 #include <vector>
 #include <cassert>

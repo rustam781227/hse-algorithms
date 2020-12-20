@@ -23,7 +23,7 @@ Rectangle::Rectangle(const Point& a, const Point& c, double k)
         k = 1 / k;
 
     double tg_alf = ((max.y - min.y) - (max.x - min.x) * k) / (k * (max.y - min.y) - (max.x - min.x));
-    double alf = k * (max.y - min.y) == (max.x - min.x) ? M_PI / 2: atan(tg_alf);
+    double alf = k * (max.y - min.y) == (max.x - min.x) ? pi / 2: atan(tg_alf);
     double diangle = sqrt((max.x - min.x) * (max.x - min.x) + (max.y - min.y) * (max.y - min.y));
     double ab = diangle * cos(atan(k));
     double ad = k * ab;

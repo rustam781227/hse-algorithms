@@ -160,7 +160,7 @@ bool Polygon::containsPoint(const Point& point) const
 
 void Polygon::rotate(const Point& center, double angle)
 {
-    angle *= M_PI / 180;
+    angle *= pi / 180;
     for (unsigned int i = 0; i < vertices.size(); ++i)
         _rotatePoint(center, vertices[i], angle);
 }

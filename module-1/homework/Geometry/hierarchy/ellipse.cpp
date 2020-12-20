@@ -3,7 +3,7 @@
 double Ellipse::_findAxialTilt() const
 {
     if (focus.second.x == focus.first.x)
-        return M_PI / 2;
+        return pi / 2;
     double tg = (focus.second.y - focus.first.y) / (focus.second.x - focus.first.x);
     return atan(tg);
 }
@@ -12,8 +12,8 @@ Ellipse::Ellipse(const Point& a, const Point& b, double dist)
 {
     focus.first = a.x > b.x ? b : a;
     focus.second = a.x > b.x ? a : b;
-    centre.x = (a.x + b.x) / 2;
-    centre.y = (a.y + b.y) / 2;
+    centre.x = (a.x + b.x) * 0.5;
+    centre.y = (a.y + b.y) * 0.5;
     big = dist / 2;
     small = sqrt(dist * dist / 4 - ((focus.first.x - centre.x) * (focus.first.x - centre.x) + (focus.first.y - centre.y) * (focus.first.y - centre.y)));
 }
@@ -35,12 +35,12 @@ std::pair<Line, Line> Ellipse::directrices()
 
 double Ellipse::perimeter() const
 {
-    return 4 * (M_PI * big * small + (big - small)) / (big + small);;
+    return 4 * (pi * big * small + (big - small)) / (big + small);;
 }
 
 double Ellipse::area() const
 {
-    return M_PI * big * small;
+    return pi * big * small;
 }
 
 bool Ellipse::operator==(const Shape& another) const
@@ -100,7 +100,7 @@ bool Ellipse::containsPoint(const Point& point) const
 
 void Ellipse::rotate(const Point& center, double angle)
 {
-    angle *= M_PI / 180;
+    angle *= pi / 180;
     _rotatePoint(center, focus.first, angle);
     _rotatePoint(center, focus.second, angle);
     _rotatePoint(center, centre, angle);

@@ -1,6 +1,8 @@
 #pragma once
+
 #include "shape.h"
 #include <utility>
+
 class Ellipse : public Shape
 {
     double _findAxialTilt() const;

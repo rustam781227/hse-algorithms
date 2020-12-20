@@ -1,11 +1,13 @@
 #pragma once
 
+#include "constants.h"
+
 struct Point
 {
 private:
     bool _isEqual(double a, double b) const
     {
-        return a - b < 1e-6 && b - a < 1e-6;
+        return a - b < eps && b - a < eps;
     }
 public:
     double x;
